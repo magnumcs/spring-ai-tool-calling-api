@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-server
+    restart: always
+    environment:
+      # Senha do usuário root
+      MYSQL_ROOT_PASSWORD: root_password
+      # Cria um banco de dados automaticamente na inicialização
+      MYSQL_DATABASE: spring_ai_tool_calling_db
+      # Cria um usuário comum (melhor prática que usar root)
+      MYSQL_USER: spring_ai_user
+      MYSQL_PASSWORD: spring_ai_123
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - backend-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  backend-network:
+    driver: bridge

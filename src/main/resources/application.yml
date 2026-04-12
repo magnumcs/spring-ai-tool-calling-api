@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: spring-ai-tool-calling-api
+  openfeign:
+    twelve-data:
+      url: https://api.twelvedata.com/time_series
+      key: ${TWELVE_DATA_API_KEY:none}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/spring_ai_tool_calling_db
+    username: ${TOOL_CALLING_DB_USER}
+    password: ${TOOL_CALLING_DB_PASSWORD}
+    hikari:
+      connection-timeout: 30000 # Espera 30 segundos pela conexão
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+    show-sql: false
+    open-in-view: false
+  flyway:
+    enable: true
+logging:
+  level:
+    org.springframework.ai: DEBUG
