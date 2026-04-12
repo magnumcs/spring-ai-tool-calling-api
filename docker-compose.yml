@@ -5,12 +5,12 @@ services:
     restart: always
     environment:
       # Senha do usuário root
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       # Cria um banco de dados automaticamente na inicialização
-      MYSQL_DATABASE: spring_ai_tool_calling_db
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       # Cria um usuário comum (melhor prática que usar root)
-      MYSQL_USER: spring_ai_user
-      MYSQL_PASSWORD: spring_ai_123
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
