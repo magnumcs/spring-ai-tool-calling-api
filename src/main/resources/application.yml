@@ -1,6 +1,9 @@
 spring:
   application:
     name: spring-ai-tool-calling-api
+  ai:
+    mistralai:
+      api-key: ${MISTRAL_API_KEY}
   openfeign:
     twelve-data:
       url: https://api.twelvedata.com/time_series
